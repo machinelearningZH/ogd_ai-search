@@ -1,0 +1,16 @@
+pandas
+numpy
+tabulate
+requests
+matplotlib
+seaborn
+pandarallel
+python-dotenv
+beautifulsoup4
+sentence-transformers
+scikit-learn
+spacy
+pacmap
+bokeh
+openai
+weaviate-client
