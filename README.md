@@ -1,6 +1,8 @@
 # 🦄 OGD AI Search
 **Search semantically, lexically, and multilingually in your OGD metadata catalog.**
 
+![GitHub License](https://img.shields.io/github/license/machinelearningzh/ogd_ai-search)
+
 [![PyPI - Python](https://img.shields.io/badge/python-v3.9+-blue.svg)](https://github.com/machinelearningZH/ogd_ai-search)
 [![GitHub Stars](https://img.shields.io/github/stars/machinelearningZH/ogd_ai-search.svg)](https://github.com/machinelearningZH/ogd_ai-search/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/machinelearningZH/ogd_ai-search.svg)](https://github.com/machinelearningZH/ogd_ai-search/issues)
