@@ -116,7 +116,7 @@ def log_interaction(start_time, raw_search_terms):
     """
     end_time = time.time()
     logging.warning(
-        f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\t{end_time-start_time:.3f}\t{raw_search_terms}'
+        f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\t{end_time - start_time:.3f}\t{raw_search_terms}"
     )
 
 
