@@ -7,10 +7,12 @@ requires-python = ">=3.10"
 
 dependencies = [
     "beautifulsoup4>=4.14.3",
+    "de-core-news-lg @ https://github.com/explosion/spacy-models/releases/download/de_core_news_lg-3.8.0/de_core_news_lg-3.8.0-py3-none-any.whl",
+    "ipykernel>=7.1.0",
     "numpy>=2.2.6",
-    "openai>=2.14.0",
     "pandarallel>=1.6.5",
     "pandas>=2.3.3",
+    "pyarrow>=22.0.0",
     "python-dotenv>=1.2.1",
     "requests>=2.32.5",
     "scikit-learn>=1.7.2",

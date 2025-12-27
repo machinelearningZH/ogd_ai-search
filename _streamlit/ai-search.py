@@ -7,7 +7,7 @@ import re
 import spacy
 import weaviate
 import weaviate.classes as wvc
-from openai import OpenAI
+from sentence_transformers import SentenceTransformer
 
 import logging
 
@@ -17,11 +17,6 @@ logging.basicConfig(
     datefmt="%d-%b-%y %H:%M:%S",
     level=logging.WARNING,
 )
-
-
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
 
 # ---------------------------------------------------------------
 # Constants and functions
@@ -77,7 +72,11 @@ def create_project_info(project_info):
 @st.cache_resource
 def instantiate_weaviate_client():
     """Instantiate Weaviate client."""
-    return weaviate.connect_to_embedded()
+    try:
+        return weaviate.connect_to_embedded()
+    except Exception as e:
+        # If embedded fails (e.g., ports already in use), connect to existing local instance
+        return weaviate.connect_to_local(port=8079, grpc_port=50050)
 
 
 @st.cache_resource
@@ -89,22 +88,24 @@ def count_datasets():
 
 
 @st.cache_resource
-def instantiate_openai_client():
-    return OpenAI()
+def instantiate_embedding_model():
+    """Instantiate sentence-transformers model."""
+    return SentenceTransformer("intfloat/multilingual-e5-small")
 
 
-def embed_with_openai(texts, model="text-embedding-3-small"):
-    """Embed text using OpenAIs text embedding model.
+def embed_with_sentence_transformer(texts):
+    """Embed text using sentence-transformers.
 
     Args:
-        texts (list): List of texts to embed.
-        model (str): OpenAI model to use (default: {"text-embedding-3-small"}).
+        texts (list or str): Text(s) to embed. Can be a single string or list of strings.
 
     Returns:
-        list: List of embeddings.
+        list or np.ndarray: Embeddings as a list (for single text) or numpy array (for multiple texts).
     """
-    response = client_openai.embeddings.create(input=texts, model=model)
-    return [x.embedding for x in response.data]
+    if isinstance(texts, str):
+        return embedding_model.encode([texts])[0].tolist()
+    else:
+        return embedding_model.encode(texts).tolist()
 
 
 def log_interaction(start_time, raw_search_terms):
@@ -185,7 +186,7 @@ def search_by_terms():
 
     # Text has to be lemmatized in the exact same way as the data, that we indexed.
     query = prepare_for_lexical_search(search_terms)
-    query_embedding = embed_with_openai(query)[0]
+    query_embedding = embed_with_sentence_transformer(query)
 
     # We set the Autocut limit to 4.
     # Autocut looks for discontinuities, or jumps, in result metrics such as vector distance or search score.
@@ -217,7 +218,7 @@ def search_by_terms():
 # ---------------------------------------------------------------
 
 nlp = instantiate_spacy_model()
-client_openai = instantiate_openai_client()
+embedding_model = instantiate_embedding_model()
 
 client = instantiate_weaviate_client()
 collection = client.collections.get("MDV")
@@ -238,7 +239,7 @@ with st.sidebar:
 
     search_box = st.text_input(
         "Suchbegriffe oder Suchsatz...",
-        value="Croissance démographique de la ville de Zurich",
+        value="Bevölkerungsbestand nach Alter und Geschlecht",
         max_chars=1000,
         # # Feel free to change the height of the search box.
         # height=100,
