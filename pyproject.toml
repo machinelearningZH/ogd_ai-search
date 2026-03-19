@@ -16,10 +16,10 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "requests>=2.32.5",
     "scikit-learn>=1.7.2",
-    "sentence-transformers>=5.2.0",
+    "sentence-transformers>=5.3.0",
     "spacy>=3.8.11",
-    "streamlit>=1.52.2",
-    "weaviate-client>=4.19.0",
+    "streamlit>=1.55.0",
+    "weaviate-client>=4.20.4",
 ]
 
 
