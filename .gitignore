@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 .DS_Store
 *.code-workspace
+_gh.code-workspace
