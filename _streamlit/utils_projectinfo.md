@@ -15,4 +15,4 @@ Semantische Suche arbeitet mit statistischen Methoden und Machine Learning. Das 
 
 ## Verantwortlich
 
-Dieser Prototyp ist Teil eines Projekts von Team Data, Statistisches Amt Kanton Zürich. Verantwortlich: Laure Stadler, Chantal Amrhein, Patrick Arnecke.
+Dieser Prototyp ist Teil eines Projekts von Team Data, Amt für Statistik und Daten Kanton Zürich. Verantwortlich: Laure Stadler, Chantal Amrhein, Patrick Arnecke.

@@ -61,7 +61,7 @@ Using statistical methods and Machine Learning, language models learn word and s
 
 ## Project Team
 
-**Laure Stadler**, **Chantal Amrhein**, **Patrick Arnecke** – [Statistisches Amt Zürich: Team Data](https://www.zh.ch/de/direktion-der-justiz-und-des-innern/statistisches-amt/data.html)
+**Laure Stadler**, **Chantal Amrhein**, **Patrick Arnecke** – [Amt für Statistik und Daten: Team Data](https://www.zh.ch/de/direktion-der-justiz-und-des-innern/amt-fuer-statistik-und-daten.html)
 
 Many thanks to **Corinna Grobe** and our former colleague **Adrian Rupp**.
 
